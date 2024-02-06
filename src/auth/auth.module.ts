@@ -4,6 +4,7 @@ import { AuthController } from "./auth.controller";
 import { PrismaModule } from "src/prisma/prisma.module";
 import { AuthService } from "./auth.service";
 import { UserModule } from "src/users/user.module";
+import { FileModule } from "src/file/file.module";
 
 
 @Module({
@@ -11,8 +12,10 @@ import { UserModule } from "src/users/user.module";
         forwardRef(()=>UserModule) ,
         PrismaModule,
         JwtModule.register({
-            secret:"JsuvBWZgQ0u1B9kIv7rP2IIUpSI0RO5c"
+            secret:process.env.JWT_SECRET
     }),
+    FileModule,
+
 ],
 
     controllers: [AuthController],
